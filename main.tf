@@ -115,8 +115,8 @@ resource "aws_security_group" "web-sg" {
 
   ingress {
     description = "HTTP from VPC"
-    from_port   = 80
-    to_port     = 80
+    from_port   = 8080
+    to_port     = 8080
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -143,7 +143,7 @@ resource "aws_lb" "external-elb" {
 
 resource "aws_lb_target_group" "external-elb" {
   name     = "ALB-TG"
-  port     = 80
+  port     = 8080
   protocol = "HTTP"
   vpc_id   = aws_vpc.my-vpc.id
 }
@@ -151,7 +151,7 @@ resource "aws_lb_target_group" "external-elb" {
 resource "aws_lb_target_group_attachment" "external-elb1" {
   target_group_arn = aws_lb_target_group.external-elb.arn
   target_id        = aws_instance.webserver1.id
-  port             = 80
+  port             = 8080
 
   depends_on = [
     aws_instance.webserver1,
@@ -161,7 +161,7 @@ resource "aws_lb_target_group_attachment" "external-elb1" {
 resource "aws_lb_target_group_attachment" "external-elb2" {
   target_group_arn = aws_lb_target_group.external-elb.arn
   target_id        = aws_instance.webserver2.id
-  port             = 80
+  port             = 8080
 
   depends_on = [
     aws_instance.webserver2,
