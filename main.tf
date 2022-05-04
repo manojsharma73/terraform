@@ -179,6 +179,10 @@ resource "aws_lb_listener" "external-elb" {
   }
 }
 
+resource "aws_iam_user" "web-admin" {
+  name = "Adam"
+}
+
 output "lb_dns_name" {
   description = "The DNS name of the load balancer"
   value       = aws_lb.external-elb.dns_name
