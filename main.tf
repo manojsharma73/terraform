@@ -180,7 +180,7 @@ resource "aws_lb_listener" "external-elb" {
 }
 
 resource "aws_iam_user" "web-admin" {
-  name = "Adam"
+  name = "web-admin"
 }
 
 output "lb_dns_name" {
